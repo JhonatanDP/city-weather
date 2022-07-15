@@ -1,0 +1,133 @@
+:root {
+    --primary: #fff;
+    --secondary: #387df5;
+    --tertiary: #879090;
+    --light-dark: #1b215f;
+    --dark: #38302e;
+    --border-radius: .3rem;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: var(--primary);
+    margin: 0;
+    padding: 0;
+    font-family:Arial, Helvetica, sans-serif;
+    color: var(--dark);
+    line-height: 1.5;
+    font-size: 16px;
+
+  }
+
+  .row {
+    margin-left: 10px;
+    margin-right: 30px;
+  }
+
+  .title-name {
+    background-image: linear-gradient(to right, rgb(37, 37, 216), rgb(4, 4, 112)) ;
+  }
+
+.title-name h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 10px;
+    color: var(--primary);
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+
+p {
+  font-size: 1.2rem;
+}
+
+ .btn-search {
+  font-size: 1.0rem;
+  text-decoration:none;
+  padding: 6px 5px;
+  width: 100%;
+  display: block;
+  margin: 5px 0;
+  border-radius: var(--border-radius);
+  color: var(--primary);
+  border: none;
+  outline: none;
+  background-color: var(--secondary);
+  transform: translate(-1px, -1px);
+  
+}
+
+ .btn-search:hover {
+  color: var(--primary);
+  background-color: var(--light-dark);
+ }
+
+ hr {
+    border: 1px solid grey;
+    margin-top: 10px;
+ }
+
+ .city-container {
+    align-items: flex-start;
+
+}
+.city-standalone {
+    display: flex;
+  height: 180px;
+  border: 1px solid black;
+  width: 100%;
+  flex-direction: column;
+}
+
+.city-standalone h3 {
+margin-top: 5px;
+margin-left: 5px;
+}
+
+.ul-city li {
+    padding-bottom: 5px;
+}
+
+#forecast {
+ width: 100%;
+ justify-content: space-between;
+ margin: auto;
+
+
+}
+
+.card-body {
+    border: 1px solid black;
+    background-color:var(--light-dark);
+    color: var(--primary);
+    text-align: left;   
+    padding: 0.2rem;
+}
+
+ul {
+    margin: 0;
+    list-style-type: none;
+    padding: 2px;
+}
+
+.forecast-title {
+    margin-top: 10px;
+}
+
+.card-body ul {
+    font-size: 20px;
+    padding-bottom: 10px;
+    font-weight: normal;
+}
