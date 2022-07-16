@@ -131,3 +131,87 @@ ul {
     padding-bottom: 10px;
     font-weight: normal;
 }
+
+/*UV indexing CSS*/
+
+.uv-low {
+    background-color: green;
+}
+.uv-moderate {
+    background-color: yellow;
+}
+
+.uv-high {
+    background-color: orange;
+}
+
+.uv-very-high {
+    background-color: rgb(176, 14, 14);
+}
+
+.uv-extreme {
+    background-color: rgb(143, 1, 143);
+}
+
+.icon {
+  display: block;
+  width: 3px;
+  height: 3px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.clear-sky-d {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/01d.png);
+}
+.clear-sky-n {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/01n.png);
+}
+.few-clouds-d {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/02d.png);
+}
+.few-clouds-n {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/02n.png);
+}
+.scattered-clouds-d {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/03d.png);
+}
+.scattered-clouds-n {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/03n.png);
+}
+.broken-clouds-d {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/04d.png);
+}
+.broken-clouds-n {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/04n.png);
+}
+.shower-rain-d {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/09d.png);
+}
+.shower-rain-n {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/09n.png);
+}
+.rain-d {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/10d.png);
+}
+.rain-n {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/10n.png);
+}
+.thunderstorm-d {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/11d.png);
+}
+.thunderstorm-n {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/11n.png);
+}
+.snow-d {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/13d.png);
+}
+.snow-n {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/13n.png);
+}
+.mist-d {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/50d.png);
+}
+.mist-n {
+    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/50n.png);
+}
