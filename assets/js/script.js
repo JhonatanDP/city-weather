@@ -21,8 +21,9 @@ var fiveDayForecast = [{},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:""
 
  var formSubmitHandler = function(event) {
     // prevent page from refreshing
+    if (event){
     event.preventDefault();
-
+    }
     // get value from input element
     cityGeolocation = cityInputNameEl.value.trim();
     // console.log(cityGeolocation);
