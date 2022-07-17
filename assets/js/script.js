@@ -86,7 +86,7 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+latCity+"&lon="+lon
     var date = (new Date().toLocaleString("en-US", {timeZone: cityTimeZone})).split(",");
     cityDate = date[0].trim();
     // console.log(cityDate);
-    iconUrl = "http://openweathermap.org/img/w/" + currentIcon + ".png";
+    iconUrl = "https://openweathermap.org/img/w/" + currentIcon + ".png";
 
     document.querySelector("#city-current-name").innerHTML = cityName;
     document.querySelector("#current-day").innerHTML ="("+cityDate+")";
@@ -137,7 +137,7 @@ var Forecast = function(){
 
     //Display Forecast
     document.querySelector("#forecastdate"+[i]).innerHTML = fiveDayForecast[i].date;
-    imgForecast = "http://openweathermap.org/img/w/" + fiveDayForecast[i].icon + ".png"
+    imgForecast = "https://openweathermap.org/img/w/" + fiveDayForecast[i].icon + ".png"
     $("#imgdate"+[i]).attr("src", imgForecast);
     document.querySelector("#tempdate"+[i]).innerHTML = " "+ fiveDayForecast[i].temp + "℉";
     document.querySelector("#winddate"+[i]).innerHTML = " "+ fiveDayForecast[i].wind + " MPH ";
