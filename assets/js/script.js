@@ -1,6 +1,6 @@
 var cityFormEl = document.querySelector("#city-form");
 var cityInputNameEl = document.querySelector("#city");
-var buttonCitySearch = document.querySelector(".btn-search");
+var buttonCity= document.querySelector("#city-buttons");
 var cityName;
 var cityGeolocation;
 var latCity;
@@ -26,7 +26,7 @@ var fiveDayForecast = [{},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:""
     }
     // get value from input element
     cityGeolocation = cityInputNameEl.value.trim();
-    // console.log(cityGeolocation);
+
   
     if(cityGeolocation) {
         getCityGeo(cityGeolocation);
@@ -43,15 +43,19 @@ var getCityGeo = function(city) {
 
     if(response.ok) {
       response.json().then(function(data) {
-    //   console.log(data);
+    
             if(data.length === 1) {
             latCity = data[0].lat;
             lonCity= data[0].lon;
             cityName = data[0].name;
-            // console.log(latCity);
-            // console.log(lonCity);
-            // console.log(cityName);
-            
+
+    //Add City history as button
+    var cityNameButton = document.createElement("button");
+    cityNameButton.setAttribute("class","btn cityname");
+    cityNameButton.textContent = cityName;
+    buttonCity.appendChild(cityNameButton);
+    cityInputNameEl.value = "";
+    
             getCityWeather(latCity,lonCity);
 
             } 
@@ -71,7 +75,6 @@ var getCityWeather = function() {
 
 fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+latCity+"&lon="+lonCity+"&exclude=hourly&units=imperial&appid="+ apiResquestKey).then(function(response) {
   response.json().then(function(data) {
-    // console.log(data);
 
     apiResponse = data;
     currentTemp= data.current.temp;
@@ -80,13 +83,10 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+latCity+"&lon="+lon
     currentUvIndex = data.current.uvi;
     currentIcon = data.current.weather[0].icon;
     cityTimeZone = data.timezone;
-    // console.log(currentHumidity);
-    // console.log(currentTemp);
-    // console.log(currentIcon);
 
     var date = (new Date().toLocaleString("en-US", {timeZone: cityTimeZone})).split(",");
     cityDate = date[0].trim();
-    // console.log(cityDate);
+
     iconUrl = "https://openweathermap.org/img/w/" + currentIcon + ".png";
 
     document.querySelector("#city-current-name").innerHTML = cityName;
@@ -147,10 +147,6 @@ var Forecast = function(){
     }
  
 };
-
-   
-
-
 
 
 cityFormEl.addEventListener("submit", formSubmitHandler);

@@ -84,6 +84,19 @@ p {
     margin-top: 10px;
  }
 
+ #city-buttons {
+    border: none;
+ }
+
+#city-buttons button {
+    background-color:var( --tertiary);
+  margin-top: 7px;
+}
+
+
+
+
+
  .city-container {
     align-items: flex-start;
 
@@ -200,13 +213,7 @@ display: flex;
             font-size: 13px;
         }
         }
-    /* @media screen and (max-width: 897px){
-        .card-body {
-            max-width : 19%;
-        } */
 
-
-    /* } */
     @media screen and (max-width: 768px){
     .container{
         max-width: 720px;
