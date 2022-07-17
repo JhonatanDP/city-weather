@@ -184,57 +184,69 @@ display: flex;
   background-repeat: no-repeat;
 }
 
-/* .clear-sky-d {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/01d.png);
-}
-.clear-sky-n {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/01n.png);
-}
-.few-clouds-d {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/02d.png);
-}
-.few-clouds-n {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/02n.png);
-}
-.scattered-clouds-d {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/03d.png);
-}
-.scattered-clouds-n {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/03n.png);
-}
-.broken-clouds-d {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/04d.png);
-}
-.broken-clouds-n {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/04n.png);
-}
-.shower-rain-d {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/09d.png);
-}
-.shower-rain-n {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/09n.png);
-}
-.rain-d {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/10d.png);
-}
-.rain-n {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/10n.png);
-}
-.thunderstorm-d {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/11d.png);
-}
-.thunderstorm-n {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/11n.png);
-}
-.snow-d {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/13d.png);
-}
-.snow-n {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/13n.png);
-}
-.mist-d {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/50d.png);
-}
-.mist-n {
-    background-image: url(/Modules/Module-06/Challenge/city-weather/assets/pics/50n.png);
-} */
+@media screen and (max-width: 1260px){
+    h3 {
+        font-size: 20px;
+    }
+    .card-body ul {
+        font-size: 15px;
+    }
+    }
+    @media screen and (max-width: 1013px){
+        h3 {
+            font-size: 20px;
+        }
+        .card-body ul {
+            font-size: 13px;
+        }
+        }
+    /* @media screen and (max-width: 897px){
+        .card-body {
+            max-width : 19%;
+        } */
+
+
+    /* } */
+    @media screen and (max-width: 768px){
+    .container{
+        max-width: 720px;
+    }
+    .score-timer {
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+    }
+    }
+    
+   
+    
+    @media screen and (max-width: 768px){
+        .card-body {
+            margin-bottom: 7px;
+        }
+    }
+    @media screen and (max-width: 594px){
+        .forecast-card {
+            flex-wrap: wrap;
+        }
+    }
+    @media screen and (max-width: 576px){
+        .city-container {
+            padding-top: 10px;
+        }
+        .card-body {
+            margin-bottom: 7px;
+        }
+
+    }
+    @media screen and (max-width: 340px){
+        .city-standalone {
+            height: 210px;
+        }
+
+    }
+    @media screen and (max-width: 216px){
+        .city-standalone {
+            height: 240px;
+        }
+
+    }

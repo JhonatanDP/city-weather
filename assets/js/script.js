@@ -33,7 +33,7 @@ var fiveDayForecast = [{},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:""
     //To clear all variable to empty for the next city
 
     else {
-        alert("Please enter a City name");
+        alert("Please enter a city name");
     }
  };
 var getCityGeo = function(city) {
@@ -55,7 +55,7 @@ var getCityGeo = function(city) {
 
             } 
             else {
-                alert("No weather found. " + " Please try again");
+                alert("No weather found. " + " Please try again!.");
                 cityInputNameEl.value = "";
                 formSubmitHandler();
             }
