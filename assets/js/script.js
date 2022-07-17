@@ -5,7 +5,7 @@ var cityName;
 var cityGeolocation;
 var latCity;
 var lonCity;
-var apiKey = config.MY_KEY;
+var apiKey = '7016675fb0eabb9cd16c56c54fe7afa4';
 var apiResquestKey = apiKey.trim("");
 var cityDate; 
 var currentIcon;
