@@ -124,7 +124,7 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+latCity+"&lon="+lon
 var Forecast = function(){
 
     console.log(apiResponse);
-debugger; 
+
     for (var i = 1; i < 6; i++) {
      var timestamp = apiResponse.daily[i].dt
      var forecastDate = new Date(timestamp*1000);
@@ -134,12 +134,17 @@ debugger;
     fiveDayForecast[i].temp = apiResponse.daily[i].temp.day;
     fiveDayForecast[i].wind = apiResponse.daily[i].wind_speed;
     fiveDayForecast[i].humidity = apiResponse.daily[i].humidity;
+
+    //Display Forecast
+    document.querySelector("#forecastdate"+[i]).innerHTML = fiveDayForecast[i].date;
+    imgForecast = "http://openweathermap.org/img/w/" + fiveDayForecast[i].icon + ".png"
+    $("#imgdate"+[i]).attr("src", imgForecast);
+    document.querySelector("#tempdate"+[i]).innerHTML = " "+ fiveDayForecast[i].temp + "℉";
+    document.querySelector("#winddate"+[i]).innerHTML = " "+ fiveDayForecast[i].wind + " MPH ";
+    document.querySelector("#humiditydate"+[i]).innerHTML = " "+ fiveDayForecast[i].humidity + " % ";
+    
     }
-
-    //Display forecast
-
-
-
+ 
 };
 
    
