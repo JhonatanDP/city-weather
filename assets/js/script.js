@@ -9,13 +9,14 @@ var apiKey = config.MY_KEY;
 var apiResquestKey = apiKey.trim("");
 var cityDate; 
 var currentIcon;
+var imgForecast;
 var currentTemp;
 var currentWind;
 var currentHumidity;
 var currentUvIndex;
 var iconUrl;
 var apiResponse;
-var fiveDayForecast = [{date:"",icon:"",temp:"",humidity:""},{date:"",icon:"",temp:"",humidity:""},{date:"",icon:"",temp:"",humidity:""},{date:"",icon:"",temp:"",humidity:""},{date:"",icon:"",temp:"",humidity:""}];
+var fiveDayForecast = [{},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:"",icon:"",temp:"",wind:"",humidity:""}];
 
 
  var formSubmitHandler = function(event) {
@@ -114,22 +115,30 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+latCity+"&lon="+lon
 
     document.querySelector("#uvindex").innerHTML = " " + currentUvIndex;
 
-    fiveDayForecast();
+    Forecast();
 
   });
 });
 };
      //5 Days Forecast
-var fiveDayForecast = function(){
-    // var d = new Date(timestap*1000);
+var Forecast = function(){
+
     console.log(apiResponse);
-    
-    for (var i = 0; i < 6; i++) {
+debugger; 
+    for (var i = 1; i < 6; i++) {
      var timestamp = apiResponse.daily[i].dt
-
-
-
+     var forecastDate = new Date(timestamp*1000);
+     var splitDate = forecastDate.toLocaleDateString().split(","); 
+    fiveDayForecast[i].date = splitDate[0].trim();
+    fiveDayForecast[i].icon = apiResponse.daily[i].weather[0].icon;
+    fiveDayForecast[i].temp = apiResponse.daily[i].temp.day;
+    fiveDayForecast[i].wind = apiResponse.daily[i].wind_speed;
+    fiveDayForecast[i].humidity = apiResponse.daily[i].humidity;
     }
+
+    //Display forecast
+
+
 
 };
 
