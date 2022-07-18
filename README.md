@@ -40,4 +40,4 @@
 - I created a function to fetch the city weather information using lat and lon.
 - I check if the city already exist to created the button.
 - I created a function to display the current city weather information and assign the correct backgroud color to the UV.
-- 
+- I created a function to display the 5 day forecast of the selected city.
