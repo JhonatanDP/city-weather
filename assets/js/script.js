@@ -1,22 +1,24 @@
-var cityFormEl = document.querySelector("#city-form");
-var cityInputNameEl = document.querySelector("#city");
-var buttonCity= document.querySelector("#city-buttons");
-var cityName;
-var cityGeolocation;
-var latCity;
-var lonCity;
-var apiKey = '7016675fb0eabb9cd16c56c54fe7afa4';
-var apiResquestKey = apiKey.trim("");
-var cityDate; 
-var currentIcon;
-var imgForecast;
-var currentTemp;
-var currentWind;
-var currentHumidity;
-var currentUvIndex;
-var iconUrl;
-var apiResponse;
+var cityFormEl = document.querySelector("#city-form");//Form selector
+var cityInputNameEl = document.querySelector("#city");//Input selector
+var buttonCity= document.querySelector("#city-buttons");//section selector to hold city buttons
+var cityName; //city input name
+var cityGeolocation; //hold the name of the requested city
+var latCity; //city latitude
+var lonCity; //city longitude
+var apiKey = '7016675fb0eabb9cd16c56c54fe7afa4';  //API key request string
+var apiResquestKey = apiKey.trim(""); //API key
+var cityDate; //city current date
+var currentIcon; //city current icon
+var imgForecast; //weather icon string
+var currentTemp; // city current temp
+var currentWind; //Current wind
+var currentHumidity; //current humidity
+var currentUvIndex; //current uv index
+var iconUrl; //url address to request the icon using the code giving by the response
+var apiResponse; //api response variable
+//Array to hold 5 days forecast
 var fiveDayForecast = [{},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:"",icon:"",temp:"",wind:"",humidity:""}];
+//array to hold the city history
 var cities =[];
 
  var formSubmitHandler = function(event) {
@@ -28,45 +30,47 @@ var cities =[];
     cityGeolocation = cityInputNameEl.value.trim();
 
   
-    if(cityGeolocation) {
+    if(cityGeolocation) { //check for user input
         getCityGeo(cityGeolocation);
     } 
-    //To clear all variable to empty for the next city
 
     else {
-        alert("Please enter a city name");
+        alert("Please enter a city name");  //if user input is empty
     }
  };
+
+ //function to get the geocoding and create the city button list
+
 var getCityGeo = function(city) {
-
+    //fetch request
     fetch("https://api.openweathermap.org/geo/1.0/direct?q="+city+"&appid="+ apiResquestKey).then(function(response) {
-
+    //check if fetch request was sucessfully 
     if(response.ok) {
       response.json().then(function(data) {
-            if(data.length === 1) {
-            latCity = data[0].lat;
-            lonCity= data[0].lon;
-            cityName = data[0].name;
-                
+            if(data.length === 1) { //check response is not empty
+            latCity = data[0].lat;  //copy latitude
+            lonCity= data[0].lon; //copy longitude
+            cityName = data[0].name; //copy city name
+                //check is city name was already requested before creating the history
                 if(!cities.includes(cityName)){
                     var cityNameButton = document.createElement("button");
                     cityNameButton.setAttribute("class","btn");
                     cityNameButton.setAttribute("id","cityname");
                     cityNameButton.textContent = cityName;
                     buttonCity.appendChild(cityNameButton);
-                    cities.push(cityName);
-                    cityInputNameEl.value = "";
+                    cities.push(cityName);    //push city name requested to array history
+                    cityInputNameEl.value = ""; //empty input
 
-                    getCityWeather(latCity,lonCity);
+                    getCityWeather(latCity,lonCity); //call function
                 }
                 else {
-                    getCityWeather(latCity,lonCity);
+                    getCityWeather(latCity,lonCity); //call function
                 }
             } 
             else {
-                alert("No weather found. " + " Please try again!.");
+                alert("No weather found. " + " Please try again!.");  //city name does not exist
                 cityInputNameEl.value = "";
-                formSubmitHandler();
+                formSubmitHandler(); //start orver
             }
     });
     } else {
@@ -74,6 +78,8 @@ var getCityGeo = function(city) {
     }
    });
 };
+
+//event listening for city button created
 
 buttonCity.addEventListener("click",function(event){
 
@@ -86,11 +92,14 @@ buttonCity.addEventListener("click",function(event){
 
 });
 
+//function to request the city weather information using latitude and longitude
+
 var getCityWeather = function() {
 
 fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+latCity+"&lon="+lonCity+"&exclude=hourly&units=imperial&appid="+ apiResquestKey).then(function(response) {
   response.json().then(function(data) {
 
+    //save API response information 
     apiResponse = data;
     currentTemp= data.current.temp;
     currentWind = data.current.wind_speed;
@@ -100,12 +109,12 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+latCity+"&lon="+lon
     cityTimeZone = data.timezone;
     
 
-
+    //getting the correct date for the requested city using the timeZone
     var date = (new Date().toLocaleString("en-US", {timeZone: cityTimeZone})).split(",");
     cityDate = date[0].trim();
-
+    //URL to request the weather icon
     iconUrl = "https://openweathermap.org/img/w/" + currentIcon + ".png";
-
+    //adding values to html tags
     document.querySelector("#city-current-name").innerHTML = cityName;
     document.querySelector("#current-day").innerHTML ="("+cityDate+")";
     $("#wicon").attr("src", iconUrl);
@@ -114,7 +123,6 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+latCity+"&lon="+lon
     document.querySelector("#currentHumidity").innerHTML = " " + currentHumidity + " % ";
 
     //UV index check
-    
     if(currentUvIndex <= 2) {
     $("#currentUvIndex").attr("class","uv-low");
     }
@@ -130,10 +138,10 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+latCity+"&lon="+lon
     else if(currentUvIndex > 10) {
         $("#currentUvIndex").attr("class","uv-extrme");
     }
-
+    //adding uv index number
     document.querySelector("#uvindex").innerHTML = " " + currentUvIndex;
 
-    Forecast();
+    Forecast(); //call 5 days forecast function
 
   });
 });
@@ -141,8 +149,8 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+latCity+"&lon="+lon
      //5 Days Forecast
 var Forecast = function(){
 
-    console.log(apiResponse);
 
+    //using the loop  to save the information the 5 day forescast inside the array
     for (var i = 1; i < 6; i++) {
      var timestamp = apiResponse.daily[i].dt
      var forecastDate = new Date(timestamp*1000);
@@ -165,21 +173,5 @@ var Forecast = function(){
  
 };
 
-var checkCityButton = function() {
-
-
-
-            var cityNameButton = document.createElement("button");
-            cityNameButton.setAttribute("class","btn");
-            cityNameButton.setAttribute("id","cityname");
-            cityNameButton.textContent = cityName;
-            buttonCity.appendChild(cityNameButton);
-            cities.push(cityName);
-            cityInputNameEl.value = "";
-    
-}
-    
-
-
-
+//event listener for search buttons
 cityFormEl.addEventListener("submit", formSubmitHandler);
