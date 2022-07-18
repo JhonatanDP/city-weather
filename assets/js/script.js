@@ -17,7 +17,7 @@ var currentUvIndex;
 var iconUrl;
 var apiResponse;
 var fiveDayForecast = [{},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:"",icon:"",temp:"",wind:"",humidity:""},{date:"",icon:"",temp:"",wind:"",humidity:""}];
-
+var cities =[];
 
  var formSubmitHandler = function(event) {
     // prevent page from refreshing
@@ -43,21 +43,25 @@ var getCityGeo = function(city) {
 
     if(response.ok) {
       response.json().then(function(data) {
-    
             if(data.length === 1) {
             latCity = data[0].lat;
             lonCity= data[0].lon;
             cityName = data[0].name;
+                
+                if(!cities.includes(cityName)){
+                    var cityNameButton = document.createElement("button");
+                    cityNameButton.setAttribute("class","btn");
+                    cityNameButton.setAttribute("id","cityname");
+                    cityNameButton.textContent = cityName;
+                    buttonCity.appendChild(cityNameButton);
+                    cities.push(cityName);
+                    cityInputNameEl.value = "";
 
-    //Add City history as button
-    var cityNameButton = document.createElement("button");
-    cityNameButton.setAttribute("class","btn cityname");
-    cityNameButton.textContent = cityName;
-    buttonCity.appendChild(cityNameButton);
-    cityInputNameEl.value = "";
-    
-            getCityWeather(latCity,lonCity);
-
+                    getCityWeather(latCity,lonCity);
+                }
+                else {
+                    getCityWeather(latCity,lonCity);
+                }
             } 
             else {
                 alert("No weather found. " + " Please try again!.");
@@ -71,6 +75,17 @@ var getCityGeo = function(city) {
    });
 };
 
+buttonCity.addEventListener("click",function(event){
+
+    var cityButtonSelection = event.target;
+    var selectedCity = cityButtonSelection.textContent;
+   
+    console.log(selectedCity);
+
+    getCityGeo(selectedCity);
+
+});
+
 var getCityWeather = function() {
 
 fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+latCity+"&lon="+lonCity+"&exclude=hourly&units=imperial&appid="+ apiResquestKey).then(function(response) {
@@ -83,6 +98,8 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+latCity+"&lon="+lon
     currentUvIndex = data.current.uvi;
     currentIcon = data.current.weather[0].icon;
     cityTimeZone = data.timezone;
+    
+
 
     var date = (new Date().toLocaleString("en-US", {timeZone: cityTimeZone})).split(",");
     cityDate = date[0].trim();
@@ -147,6 +164,22 @@ var Forecast = function(){
     }
  
 };
+
+var checkCityButton = function() {
+
+
+
+            var cityNameButton = document.createElement("button");
+            cityNameButton.setAttribute("class","btn");
+            cityNameButton.setAttribute("id","cityname");
+            cityNameButton.textContent = cityName;
+            buttonCity.appendChild(cityNameButton);
+            cities.push(cityName);
+            cityInputNameEl.value = "";
+    
+}
+    
+
 
 
 cityFormEl.addEventListener("submit", formSubmitHandler);
